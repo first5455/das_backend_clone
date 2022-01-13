@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col align-items-center">
+                <div class="jumbotron">
+                    <h2 class="display-4">Welcome</h2>
+                    <p class="lead">Webservice API for D.A.S System</p>
+                    <hr class="my-4">
+                    <h4>Link Menu</h4>
+                    <p class="lead">API List</p>
+                    <a class="btn btn-success btn-lg" href="/swagger" role="button">Swagger View</a>
+                    <a class="btn btn-primary btn-lg" href="/redoc" role="button">Redoc View</a>
+                    </p>
+                    <p class="lead">Website</p>
+                    <a class="btn btn-danger btn-lg" href="{{ frontendweb }}" role="button">D.A.S Client Website</a>
+                    <a class="btn btn-primary btn-lg" href="{{ backendweb }}" role="button">D.A.S Backend Website</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

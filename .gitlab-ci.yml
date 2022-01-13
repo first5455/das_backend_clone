@@ -1,0 +1,46 @@
+stages:
+  - merge
+  - build
+  - deploy
+
+########## - merge requests - ##########
+test:
+  stage: merge
+  only:
+    - merge_requests
+  script:
+    - docker build --pull --no-cache -t build-test-dasbackend .
+  after_script:
+    - docker rmi -f build-test-dasbackend || true && docker rmi -f $(docker images -f "dangling=true" -q)
+
+########## - develop - ##########
+deploy-develop-build:
+  stage: build
+  only:
+    - develop
+  script:
+    - docker build --pull --no-cache -t das-system-beaver-backend .
+
+deploy-develop:
+  stage: deploy
+  only:
+    - develop
+  script:
+    - docker rm -f das-system-backend-beaver-run || true .
+    - docker run -d -p 5000:8000 --name das-system-backend-beaver-run --restart=always das-system-beaver-backend
+
+########## - main - ##########
+deploy-main-build:
+  stage: build
+  only:
+    - main
+  script:
+    - docker build --pull --no-cache -t das-system-backend .
+
+deploy-main:
+  stage: deploy
+  only:
+    - main
+  script:
+    - docker rm -f das-system-backend-run || true .
+    - docker run -d -p 8000:8000 --name das-system-backend-run --restart=always das-system-backend

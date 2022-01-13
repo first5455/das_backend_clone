@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}D.A.S WebService{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <ul class="navbar-nav mx-auto">
+        <span class="navbar-brand mb-0 h1">Deploy and Autoscale System Web Service API</span>
+    </ul>
+</nav>
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>
